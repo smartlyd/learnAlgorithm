@@ -5,8 +5,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+
+import javafx.util.Pair;
 
 /**
  * @author: Lee
@@ -166,5 +170,33 @@ public class Chapter2 {
         }
         return ans;
 
+    }
+
+
+    private HashMap<Integer, List<String>> resultMap = new HashMap();
+    Queue<Pair<Integer,List<Integer>>> queue = new LinkedList();
+    public List<String> generateParenthesis(int n) {
+        if( n == 0) return null;
+        //结果记录map,如果此n 已经计算过，则直接返回结果
+        if(resultMap.containsKey(n)){
+            return resultMap.get(n);
+        }
+
+        Pair<Boolean,Boolean> result = new Pair<>(false,false);
+        queue.peek()
+        List<String>  resu = new ArrayList();
+        for(int k =1;k<n;k++){
+            // 假设n 个数可以输出s种组合 以一个完整括号包裹某个x 为标记进行拆分
+            // 则s = （X） + b
+            List<String> X = generateParenthesis(k-1);
+            List<String> b = generateParenthesis(n-k);
+            for(String x: X ){
+                for(String y: b)
+                    resu.add("("+x +")" + y);
+            }
+        }
+
+        resultMap.put(n,resu);
+        return resu;
     }
 }
