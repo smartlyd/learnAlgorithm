@@ -183,7 +183,6 @@ public class Chapter2 {
         }
 
         Pair<Boolean,Boolean> result = new Pair<>(false,false);
-        queue.peek()
         List<String>  resu = new ArrayList();
         for(int k =1;k<n;k++){
             // 假设n 个数可以输出s种组合 以一个完整括号包裹某个x 为标记进行拆分
